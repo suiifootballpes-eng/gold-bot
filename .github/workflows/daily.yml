@@ -1,0 +1,15 @@
+name: Daily Update
+on:
+  schedule:
+    - cron: '30 6 * * *' # ഇത് ഇന്ത്യൻ സമയം ഉച്ചയ്ക്ക് 12:00 PM-ന് മെസ്സേജ് അയക്കും
+  workflow_dispatch: # ഇത് നമുക്ക് വേണമെങ്കിൽ ഇപ്പോൾ തന്നെ ടെസ്റ്റ് ചെയ്യാൻ വേണ്ടിയാണ്
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: pip install requests
+      - run: python gold.py
